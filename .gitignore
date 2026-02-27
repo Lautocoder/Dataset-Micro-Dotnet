@@ -1,0 +1,6 @@
+# Dossiers de configuration Visual Studio
+.vs/
+
+# Dossiers de compilation (binaires et objets)
+**/bin/
+**/obj/

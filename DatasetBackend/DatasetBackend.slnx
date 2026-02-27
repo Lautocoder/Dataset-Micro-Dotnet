@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ApiGateway/ApiGateway.csproj" Id="4ea236f4-5832-42d8-9c9e-1217f9c535b6" />
+  <Project Path="Dataset-Manager/Dataset-Manager.csproj" />
+  <Project Path="Generator-Service/Generator-Service.csproj" Id="8fb21c5d-4688-4794-bcd3-b1ded4ef692c" />
+</Solution>

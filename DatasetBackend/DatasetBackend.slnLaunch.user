@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Dataset-Manager\\Dataset-Manager.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Generator-Service\\Generator-Service.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "ApiGateway\\ApiGateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
