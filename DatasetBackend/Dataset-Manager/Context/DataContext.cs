@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dataset_Manager.Context
 {
-    public class DataContext : DbContext
+    public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<Project> Projects { get; set; }
         public DbSet<EntityDefinition> Entities { get; set; }
         public DbSet<AttributeDefinition> Attributes { get; set; }

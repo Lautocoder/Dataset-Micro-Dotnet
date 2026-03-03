@@ -1,22 +1,18 @@
-using Dataset_Manager.Config;
-using Dataset_Manager.Extensions;
+using Auth_Service.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-// Récupération de la chaîne de connexion
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
 var jwt = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwt["Key"]!);
 
-// Add services to the container.
-builder.Services.AddServices(builder.Configuration,connectionString);
+builder.Services.AddServices(builder.Configuration, connectionString);
+
 builder.Services
   .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
   .AddJwtBearer(options =>
@@ -33,7 +29,9 @@ builder.Services
           ClockSkew = TimeSpan.FromSeconds(30)
       };
   });
+// Add services to the container.
 
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 //builder.Services.AddOpenApi();
@@ -42,8 +40,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-await DataSeeder.SeedAsync(app.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -62,5 +58,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
